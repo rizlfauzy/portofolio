@@ -1,38 +1,34 @@
-import React, { useEffect } from "react";
+// react
+import { memo, useEffect, useCallback } from "react";
+
+// store
 import { useProfileStore } from "@/store/useProfileStore";
 import { useLanguageStore } from "@/store/useLanguageStore";
-import { useLoadingStore } from "@/store/useLoadingStore";
-import useFetch from "@/hooks/useFetch";
+
+// icons
 import { Download, Briefcase, GraduationCap } from "lucide-react";
 
-const Home: React.FC = () => {
+// service
+import useHomeService from "@/services/homeService";
+
+export default memo(function Page() {
   const { t } = useLanguageStore();
   const { profile, setProfile } = useProfileStore();
-  const { setLoading } = useLoadingStore();
-  const { getData } = useFetch();
+  const { getProfile } = useHomeService();
+
+  // init
+  const initData = useCallback(async () => {
+    const [res] = await Promise.all([getProfile()]);
+    setProfile(res);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setProfile]);
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      setLoading(true);
-      try {
-        const response = await getData({ url: "/cv" });
-        if (response && !response.error) {
-          setProfile(response);
-        } else {
-          console.error(response?.message || "Failed to fetch profile");
-        }
-      } catch (error) {
-        console.error("Error fetching profile", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    // Only fetch if profile is not already loaded
-    if (!profile) {
-      fetchProfile();
+    async function init() {
+      await initData();
     }
-  }, [getData, setProfile, profile, setLoading]);
+    init();
+  }, [initData]);
 
   if (!profile) return <div className="min-h-screen pt-16 bg-gray-50 dark:bg-gray-900"></div>;
 
@@ -115,6 +111,4 @@ const Home: React.FC = () => {
       </section>
     </div>
   );
-};
-
-export default Home;
+})
