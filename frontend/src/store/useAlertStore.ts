@@ -28,7 +28,7 @@ export const useAlertStore = create<AlertState>((set) => ({
         message,
         type,
         duration: 5000,
-        isCenter: true,
+        isCenter: false,
       },
     });
   },
