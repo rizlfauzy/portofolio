@@ -8,6 +8,7 @@ import { X, CheckCircle, AlertCircle, AlertTriangle, Info } from "lucide-react";
 import { useAlertStore } from "@/store/useAlertStore";
 import { type AlertType } from "@/store/useAlertStore";
 
+// utils
 import { cn } from "@/lib/utils";
 
 export default memo(function Alert() {
@@ -126,14 +127,14 @@ export default memo(function Alert() {
       </div>
     </div>
   ) : (
-    <div className="fixed top-5 left-1/2 transform -translate-x-1/2 z-51 w-full max-w-md px-4" role="alert" aria-live="assertive" aria-atomic="true">
+    <div className="fixed top-5 right-5 transform z-51 w-full max-w-md px-4" role="alert" aria-live="assertive" aria-atomic="true">
       <div
-        className={cn("relative rounded-lg border px-4 py-3 text-sm bg-background text-foreground shadow-lg md:w-72 w-60 border-l-4", getAlertStyles({ type: alert.type }))}
+        className={cn("relative rounded-lg border px-4 py-3 text-sm bg-background text-foreground shadow-lg border-l-4", getAlertStyles({ type: alert.type }))}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="flex items-center">
-          <div className="mt-1 mr-4">{getAlertIcon({ type: alert.type, isCenter: true })}</div>
+          <div className="mt-1 mr-4">{getAlertIcon({ type: alert.type, isCenter: false })}</div>
           <div className="flex-1">
             <div className="mb-1 leading-none tracking-tight font-bold text-lg text-slate-600">{alert.title}</div>
             <div className="text-sm [&_p]:leading-relaxed text-slate-600">{alert.message}</div>
@@ -142,7 +143,7 @@ export default memo(function Alert() {
             <button
               ref={closeButtonRef}
               type="button"
-              className="bg-red-600 hover:bg-red-700! active:bg-red-600! text-white p-3 cursor-pointer"
+              className="bg-red-600 hover:bg-red-700! active:bg-red-600! text-white p-3 rounded-lg cursor-pointer"
               aria-label="Close alert"
               title="Close alert (ESC)"
               onClick={() => {
