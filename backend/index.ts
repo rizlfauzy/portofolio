@@ -15,22 +15,26 @@ const cvDataPath = path.join(__dirname, "cv.json");
 app.get("/api/cv", (req, res) => {
   try {
     const data = fs.readFileSync(cvDataPath, "utf-8");
-    res.json(JSON.parse(data));
+    res.json({
+      error: false,
+      message: "CV data loaded successfully",
+      data: JSON.parse(data),
+    });
   } catch (error) {
     console.error("Error reading CV data:", error);
-    res.status(500).json({ error: "Failed to load CV data" });
+    res.status(500).json({ error: true, message: "Failed to load CV data" });
   }
 });
 
-// Update CV data (Mock storage)
+// Update CV data (Mock storage)  
 app.post("/api/cv", (req, res) => {
   try {
     const newData = req.body;
     fs.writeFileSync(cvDataPath, JSON.stringify(newData, null, 2));
-    res.json({ message: "CV data updated successfully", data: newData });
+    res.json({ error: false, message: "CV data updated successfully", data: newData });
   } catch (error) {
     console.error("Error saving CV data:", error);
-    res.status(500).json({ error: "Failed to save CV data" });
+    res.status(500).json({ error: true, message: "Failed to save CV data" });
   }
 });
 
