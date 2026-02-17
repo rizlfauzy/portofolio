@@ -1,0 +1,32 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Backend - Install & Test
+        working-directory: ./backend
+        run: |
+          bun install
+          # Add tests here if available
+
+      - name: Frontend - Install & Build
+        working-directory: ./frontend
+        run: |
+          bun install
+          bun run build
+
+      - name: Docker Compose Build
+        run: docker compose build

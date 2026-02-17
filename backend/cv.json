@@ -1,0 +1,50 @@
+{
+  "name": "Rizal Fauzi",
+  "title": "Full Stack Developer",
+  "about": "Saya Rizal Fauzi, seorang tech enthusiast yang sudah punya pengalaman kerja lebih dari 3 tahun di dunia web developer. Pernah bersekolah di SMKN 26 Jakarta 4 tahun, dan masih berkuliah di Unindra. Mahir dengan Javascript, PHP, React, Tailwind, Express, Laravel, Docker, CI/CD.",
+  "experiences": [
+    {
+      "id": 1,
+      "role": "Full Stack Developer",
+      "company": "PT Fourbest Synergi",
+      "duration": "3 tahun - Sekarang",
+      "description": "Masih bekerja sebagai Full Stack Developer."
+    },
+    {
+      "id": 2,
+      "role": "Full Stack Web Developer",
+      "company": "PT Inteligence Dynamics",
+      "duration": "1 tahun",
+      "description": "Bekerja sebagai web developer."
+    },
+    {
+      "id": 3,
+      "role": "Back-end Developer (Freelance)",
+      "company": "PT Rekayasa Sintak Indonesia",
+      "duration": "1 bulan",
+      "description": "Freelance back-end developer."
+    },
+    {
+      "id": 4,
+      "role": "Content Distributor (Intern)",
+      "company": "PT Hanendra Jeka",
+      "duration": "1 tahun",
+      "description": "Magang sebagai Content Distributor."
+    }
+  ],
+  "educations": [
+    {
+      "id": 1,
+      "school": "Universitas Indraprasta PGRI (Unindra)",
+      "degree": "Mahasiswa",
+      "year": "Sekarang"
+    },
+    {
+      "id": 2,
+      "school": "SMKN 26 Jakarta",
+      "degree": "Siswa",
+      "year": "4 tahun"
+    }
+  ],
+  "skills": ["Javascript", "PHP", "React", "Tailwind", "Express", "Laravel", "Docker", "CI/CD"]
+}
