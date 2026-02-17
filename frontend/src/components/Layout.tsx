@@ -8,6 +8,7 @@ import { useThemeStore } from "@/store/useThemeStore";
 // components
 import Navbar from "@/components/layout/Navbar";
 import { FullScreenLoading } from "@/components/Loading";
+import Alert from "@/components/Alert";
 import Head from "@/components/Head";
 
 export default memo(function Layout({ children, title }: { children: React.ReactNode; title?: string }) {
@@ -24,6 +25,7 @@ export default memo(function Layout({ children, title }: { children: React.React
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <Head title={title} />
+      <Alert />
       {isLoading && <FullScreenLoading message="Please wait..." />}
       <Navbar />
       {children}
