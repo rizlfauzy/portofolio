@@ -1,27 +1,29 @@
-import { useEffect } from "react";
-import Navbar from "@/components/layout/Navbar";
+// env
+const { VITE_PREFIX } = import.meta.env;
+
+// react
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+// components
+import Layout from "@/components/Layout";
+
+// pages
 import Home from "@/pages/Home";
-import { useThemeStore } from "@/store/useThemeStore";
-import { useLoadingStore } from "@/store/useLoadingStore";
-import { FullScreenLoading }   from "@/components/Loading";
 
-function App() {
-  const { theme } = useThemeStore();
-  const { isLoading } = useLoadingStore();
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(theme);
-  }, [theme]);
+export default function App() {
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      {isLoading && <FullScreenLoading message="Please wait..." />}
-      <Navbar />
-      <Home />
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path={`${VITE_PREFIX}`}
+          element={
+            <Layout title={"HOME"}>
+              <Home />
+            </Layout>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;
