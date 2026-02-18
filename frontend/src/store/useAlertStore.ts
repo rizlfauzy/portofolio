@@ -14,21 +14,21 @@ interface AlertState {
   alert: AlertProps | null;
   setAlert: (alert: AlertProps) => void;
   clearAlert: () => void;
-  showAlert: ({ message, type, title }: { message: string; type: AlertType; title: string }) => void;
+  showAlert: ({ message, type, title, duration, isCenter }: { message: string; type: AlertType; title: string; duration?: number; isCenter?: boolean }) => void;
 }
 
 export const useAlertStore = create<AlertState>((set) => ({
   alert: null,
   setAlert: (alert) => set({ alert }),
   clearAlert: () => set({ alert: null }),
-  showAlert: ({ message, type, title }) => {
+  showAlert: ({ message, type, title, duration = 5000, isCenter = false }) => {
     set({
       alert: {
         title,
         message,
         type,
-        duration: 5000,
-        isCenter: false,
+        duration,
+        isCenter,
       },
     });
   },
