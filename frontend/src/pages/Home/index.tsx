@@ -111,4 +111,4 @@ export default memo(function Page() {
       </section>
     </div>
   );
-})
+});
