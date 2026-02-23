@@ -6,6 +6,9 @@ import { useLoadingStore } from "@/store/useLoadingStore";
 import { useThemeStore } from "@/store/useThemeStore";
 import { useLanguageStore } from "@/store/useLanguageStore";
 
+// logo
+import logo from "@/assets/img/rf_logo.png";
+
 // components
 import Navbar from "@/components/layout/Navbar";
 import { FullScreenLoading } from "@/components/Loading";
@@ -26,7 +29,7 @@ export default memo(function Layout({ children, title }: { children: React.React
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <Head title={title} />
+      <Head title={title} icon={logo} />
       <Alert />
       {isLoading && <FullScreenLoading message={t("loading")} />}
       <Navbar />
