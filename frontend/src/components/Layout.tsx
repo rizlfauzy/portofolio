@@ -4,6 +4,7 @@ import { memo, useEffect } from "react";
 // stores
 import { useLoadingStore } from "@/store/useLoadingStore";
 import { useThemeStore } from "@/store/useThemeStore";
+import { useLanguageStore } from "@/store/useLanguageStore";
 
 // components
 import Navbar from "@/components/layout/Navbar";
@@ -15,6 +16,7 @@ export default memo(function Layout({ children, title }: { children: React.React
   // stores
   const { isLoading } = useLoadingStore();
   const { theme } = useThemeStore();
+  const { t } = useLanguageStore();
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -26,7 +28,7 @@ export default memo(function Layout({ children, title }: { children: React.React
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <Head title={title} />
       <Alert />
-      {isLoading && <FullScreenLoading message="Please wait..." />}
+      {isLoading && <FullScreenLoading message={t("loading")} />}
       <Navbar />
       {children}
     </div>
