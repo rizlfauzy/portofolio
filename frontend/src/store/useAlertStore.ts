@@ -8,10 +8,10 @@ type AlertProps = {
   type: AlertType;
   duration: number;
   isCenter: boolean;
-};
+} | null;
 
 interface AlertState {
-  alert: AlertProps | null;
+  alert: AlertProps;
   setAlert: (alert: AlertProps) => void;
   clearAlert: () => void;
   showAlert: ({ message, type, title, duration, isCenter }: { message: string; type: AlertType; title: string; duration?: number; isCenter?: boolean }) => void;

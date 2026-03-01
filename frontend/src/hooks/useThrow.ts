@@ -17,7 +17,7 @@ export default function useThrow() {
           showAlert({ message, type: "error", title: "Network Error" });
           break;
         default:
-          showAlert({ message, type: "error", title: "Error" });
+          showAlert({ message, type: "error", title: "Error", isCenter: false });
           break;
       }
     },
